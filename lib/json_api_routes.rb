@@ -9,13 +9,13 @@ module JsonApiRoutes
   end
 
   def create_versions(path)
-    get "/versions", to: "@{ path }#versions", format: false
+    get "/versions", to: "#{ path }#versions", format: false
     get "/versions/:id", to: "#{ path }#version", format: false
   end
   
   def json_api_resources(path, options={})
     links = options.delete(:links)
-    versioned = options.delete(:version)
+    versioned = options.delete(:versioned)
     options = options.merge(except: [:new, :edit],
                             format: false)
     resources(path, options) do
